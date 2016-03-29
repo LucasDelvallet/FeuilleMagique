@@ -1,0 +1,14 @@
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\bin\Debug\FeuilleMagique.exe.config
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\App.g.cs
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique_MarkupCompile.cache
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.g.resources
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.Properties.Resources.resources
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.csproj.GenerateResource.Cache
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\bin\Debug\FeuilleMagique.exe
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\bin\Debug\FeuilleMagique.pdb
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\cloud.baml
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\MainWindow.baml
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\cloud.g.cs
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\MainWindow.g.cs
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.exe
+c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.pdb

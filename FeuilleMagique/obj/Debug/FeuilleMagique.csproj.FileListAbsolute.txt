@@ -12,3 +12,21 @@ c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMag
 c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\MainWindow.g.cs
 c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.exe
 c:\users\quentin\documents\visual studio 2013\Projects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.pdb
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\bin\Debug\FeuilleMagique.exe.config
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.exe
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.pdb
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\bin\Debug\FeuilleMagique.exe
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\bin\Debug\FeuilleMagique.pdb
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.csprojResolveAssemblyReference.cache
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\cloud.baml
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\MainWindow.baml
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\cloud.g.cs
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\MainWindow.g.cs
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\App.g.cs
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique_MarkupCompile.cache
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.g.resources
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.Properties.Resources.resources
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.csproj.GenerateResource.Cache
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\Stylo.g.cs
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique_MarkupCompile.lref
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\Stylo.baml

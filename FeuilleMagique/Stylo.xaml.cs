@@ -11,19 +11,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApplication1;
 
-namespace WpfApplication1
+namespace FeuilleMagique
 {
     /// <summary>
-    /// Logique d'interaction pour cloud.xaml
+    /// Logique d'interaction pour Stylo.xaml
     /// </summary>
-    public partial class Cloud : Window
+    public partial class Stylo : Window
     {
-        public Cloud()
+        MainWindow mainWindow;
+        public Stylo(MainWindow m)
         {
             InitializeComponent();
+            mainWindow = m;
         }
 
-
+        private void buttonDossier_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.drawFolder();
+        }
     }
 }

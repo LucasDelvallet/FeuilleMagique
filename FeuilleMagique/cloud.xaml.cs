@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,10 @@ namespace WpfApplication1
                 txtBlock.Margin = new Thickness(6);
                 txtBlock.Background = Brushes.LightGray;
                 txtBlock.FontFamily = new FontFamily("Freestyle Script");
+                if (i == 2)
+                {
+                    txtBlock.Background = Brushes.Yellow;
+                }
                 txtBlock.FontSize = 25;
                 txtBlock.TextWrapping = TextWrapping.Wrap;
                 txtBlock.TextAlignment = TextAlignment.Center;
@@ -79,12 +84,16 @@ namespace WpfApplication1
                 txtBlock.FontFamily = new FontFamily("Freestyle Script");
                 txtBlock.FontSize = 3;
                 txtBlock.TextWrapping = TextWrapping.Wrap;
-                txtBlock.TextAlignment = TextAlignment.Center;
+                //txtBlock.TextAlignment = TextAlignment.Center;
                 pages.Children.Add(txtBlock);
                 i++;
             }
         }
 
-
+        private void pages_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.IO.File.WriteAllText(@"test.txt", "Duis aliquet vel ligula sagittis mollis. Nam sollicitudin venenatis felis, eu fringilla nisl bibendum ullamcorper. Praesent aliquet varius nunc, a pharetra orci bibendum ac. \n  Praesent et elementum est. Ut vitae malesuada nisi, sed tincidunt diam.  \n Suspendisse fringilla blandit mauris nec porttitor.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n  Cras sed est vel metus gravida malesuada. \n  Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.");
+            System.Diagnostics.Process.Start(@"test.txt");
+        }
     }
 }

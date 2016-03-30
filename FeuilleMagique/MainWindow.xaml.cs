@@ -21,12 +21,22 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<String> pages = new List<string>();
-        List<String> titres = new List<string>();
+        public static List<String> pages = new List<string>();
+        public static List<String> titres = new List<string>();
         int index = 0;
         Cloud cloud ;
         Stylo stylo;
         Boolean pagesSontAffiche = false;
+
+        public static List<String> getPages()
+        {
+            return pages;
+        }
+
+        public static List<String> getTitres()
+        {
+            return titres;
+        }
 
         public MainWindow()
         {
@@ -40,13 +50,13 @@ namespace WpfApplication1
             this.Title = "Page 1";
             numpage.Text = "Page " + (index + 1);
 
-            titres.Add(" AEL");
-            titres.Add(" AEO");
-            titres.Add(" IHM");
-            titres.Add(" GL");
-            titres.Add(" COO");
-            titres.Add(" BL");
-            titres.Add(" CAR");
+            titres.Add("AEL");
+            titres.Add("AEO");
+            titres.Add("IHM");
+            titres.Add("GL");
+            titres.Add("COO");
+            titres.Add("BL");
+            titres.Add("CAR");
 
             pages.Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
             pages.Add("Morbi placerat nibh eros, eget fermentum nulla cursus non. Cras sit amet justo eleifend nibh feugiat dapibus eget quis metus.");
@@ -113,6 +123,7 @@ namespace WpfApplication1
                 txtBlock.FontFamily = titre.FontFamily;
                 txtBlock.FontSize = titre.FontSize;
                 txtBlock.TextWrapping = TextWrapping.Wrap;
+                txtBlock.TextAlignment = TextAlignment.Center;
                 dossierGrid.Children.Add(txtBlock);
                 Grid.SetColumn(txtBlock, i);
                 Grid.SetRow(txtBlock, j);
@@ -139,7 +150,7 @@ namespace WpfApplication1
                 txtBlock.Margin = new Thickness(6);
                 txtBlock.Background = Brushes.LightGray;
                 txtBlock.FontFamily = titre.FontFamily;
-                txtBlock.FontSize = 3;
+                txtBlock.FontSize = 3;             
                 dossierGrid.Children.Add(txtBlock);
                 Grid.SetColumn(txtBlock, i);
                 Grid.SetRow(txtBlock, j);
@@ -154,6 +165,9 @@ namespace WpfApplication1
 
         private void dossierGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            //TextBlock tb = sender as TextBlock;
+            //index = dossierGrid.Children.IndexOf(tb);
+
             if (pagesSontAffiche)
             {
                 feuille.Visibility = Visibility.Visible;

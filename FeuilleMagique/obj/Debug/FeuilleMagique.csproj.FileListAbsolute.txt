@@ -48,3 +48,4 @@ C:\Users\Quentin\Desktop\GitProjects\FeuilleMagique\FeuilleMagique\obj\Debug\Sty
 C:\Users\Quentin\Desktop\GitProjects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.g.resources
 C:\Users\Quentin\Desktop\GitProjects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.Properties.Resources.resources
 C:\Users\Quentin\Desktop\GitProjects\FeuilleMagique\FeuilleMagique\obj\Debug\FeuilleMagique.csproj.GenerateResource.Cache
+C:\Users\Lucas\Documents\FeuilleMagique\FeuilleMagique\obj\Debug\GeneratedInternalTypeHelper.g.cs

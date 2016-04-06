@@ -61,7 +61,7 @@ namespace WpfApplication1
             pages.Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
             pages.Add("Morbi placerat nibh eros, eget fermentum nulla cursus non. Cras sit amet justo eleifend nibh feugiat dapibus eget quis metus.");
             pages.Add("Duis aliquet vel ligula sagittis mollis. Nam sollicitudin venenatis felis, eu fringilla nisl bibendum ullamcorper. Praesent aliquet varius nunc, a pharetra orci bibendum ac. \n  Praesent et elementum est. Ut vitae malesuada nisi, sed tincidunt diam.  \n Suspendisse fringilla blandit mauris nec porttitor.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n  Cras sed est vel metus gravida malesuada. \n  Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.");
-            pages.Add("Aliquam iaculis quam ipsum, ut consectetur eros vulputate eget. Proin vitae vestibulum lorem");
+            pages.Add("Aliquam iaculis quam ipsum, ut underlined eros vulputate eget. Proin vitae vestibulum lorem");
             pages.Add("");
 
             feuille.Visibility = Visibility.Hidden;
@@ -89,7 +89,10 @@ namespace WpfApplication1
 
             this.Title = "Page "+ (index+1);
             numpage.Text = "Page " + (index + 1);
-            
+
+            gifImageDroite.StartAnimation();
+            gifImageGauche.Visibility = Visibility.Hidden;
+            gifImageDroite.Visibility = Visibility.Visible;
         }
 
         private void pageprecedente_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -103,6 +106,10 @@ namespace WpfApplication1
             //titre.Text = titres[index];
             this.Title = "Page " + (index+1);
             numpage.Text = "Page " + (index + 1);
+
+            gifImageGauche.StartAnimation();
+            gifImageGauche.Visibility = Visibility.Visible;
+            gifImageDroite.Visibility = Visibility.Hidden;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -137,6 +144,8 @@ namespace WpfApplication1
             feuille.Visibility = Visibility.Hidden;
             titre.Visibility = Visibility.Hidden;
             numpage.Visibility = Visibility.Hidden;
+            pageprecedente.Visibility = Visibility.Hidden;
+            pagesuivante.Visibility = Visibility.Hidden;
         }
 
         public void drawPages()
@@ -173,6 +182,9 @@ namespace WpfApplication1
                 feuille.Visibility = Visibility.Visible;
                 titre.Visibility = Visibility.Visible;
                 numpage.Visibility = Visibility.Visible;
+                pageprecedente.Visibility = Visibility.Visible;
+                pagesuivante.Visibility = Visibility.Visible;
+
                 pagesSontAffiche = false;
                 dossierGrid.Children.Clear();
 

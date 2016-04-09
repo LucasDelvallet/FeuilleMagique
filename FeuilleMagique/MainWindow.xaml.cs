@@ -46,8 +46,7 @@ namespace WpfApplication1
             cloud.Show();
             stylo = new Stylo(this);
             stylo.Show();
-
-            this.Title = "Page 1";
+            
             numpage.Text = "Page " + (index + 1);
 
             titres.Add("AEL");
@@ -66,10 +65,34 @@ namespace WpfApplication1
 
             feuille.Visibility = Visibility.Hidden;
             drawFolder();
+
+            gifImageDroite.mainWindow = this;
+            gifImageDroite.isPageSuivante = true;
+            gifImageGauche.mainWindow = this;
+            gifImageGauche.isPageSuivante = false;
         }
         
         private void pagesuivante_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            titre.Visibility = Visibility.Hidden;
+            numpage.Visibility = Visibility.Hidden;
+            feuille.Visibility = Visibility.Hidden;
+            pagesNaviguer.Visibility = Visibility.Hidden;
+            ScrollPagesNaviguer.Visibility = Visibility.Hidden;
+
+            gifImageDroite.StartAnimation();
+            gifImageGauche.Visibility = Visibility.Hidden;
+            gifImageDroite.Visibility = Visibility.Visible;
+        }
+
+        public void displayPageSuivante()
+        {
+            titre.Visibility = Visibility.Visible;
+            numpage.Visibility = Visibility.Visible;
+            feuille.Visibility = Visibility.Visible;
+            pagesNaviguer.Visibility = Visibility.Visible;
+            ScrollPagesNaviguer.Visibility = Visibility.Visible;
+
             pages[index] = feuille.Text;
 
             if (pages.Count - 1 == index)
@@ -86,30 +109,41 @@ namespace WpfApplication1
                 feuille.Text = pages[index];
                 //titre.Text = titres[index];
             }
-
-            this.Title = "Page "+ (index+1);
+            
             numpage.Text = "Page " + (index + 1);
-
-            gifImageDroite.StartAnimation();
-            gifImageGauche.Visibility = Visibility.Hidden;
-            gifImageDroite.Visibility = Visibility.Visible;
+            updatePagesNaviguer();
         }
 
         private void pageprecedente_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            pages[index] = feuille.Text;
-            if (index != 0)
-            {
-                index--;
-            }            
-            feuille.Text = pages[index];
-            //titre.Text = titres[index];
-            this.Title = "Page " + (index+1);
-            numpage.Text = "Page " + (index + 1);
+            titre.Visibility = Visibility.Hidden;
+            numpage.Visibility = Visibility.Hidden;
+            feuille.Visibility = Visibility.Hidden;
+            pagesNaviguer.Visibility = Visibility.Hidden;
+            ScrollPagesNaviguer.Visibility = Visibility.Hidden;
 
             gifImageGauche.StartAnimation();
             gifImageGauche.Visibility = Visibility.Visible;
             gifImageDroite.Visibility = Visibility.Hidden;
+        }
+
+        public void displayPagePrecedente()
+        {
+            titre.Visibility = Visibility.Visible;
+            numpage.Visibility = Visibility.Visible;
+            feuille.Visibility = Visibility.Visible;
+            pagesNaviguer.Visibility = Visibility.Visible;
+            ScrollPagesNaviguer.Visibility = Visibility.Visible;
+
+            pages[index] = feuille.Text;
+            if (index != 0)
+            {
+                index--;
+            }
+            feuille.Text = pages[index];
+            //titre.Text = titres[index];
+            numpage.Text = "Page " + (index + 1);
+            updatePagesNaviguer();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -146,6 +180,8 @@ namespace WpfApplication1
             numpage.Visibility = Visibility.Hidden;
             pageprecedente.Visibility = Visibility.Hidden;
             pagesuivante.Visibility = Visibility.Hidden;
+            pagesNaviguer.Visibility = Visibility.Hidden;
+            ScrollPagesNaviguer.Visibility = Visibility.Hidden;
         }
 
         public void drawPages()
@@ -184,6 +220,8 @@ namespace WpfApplication1
                 numpage.Visibility = Visibility.Visible;
                 pageprecedente.Visibility = Visibility.Visible;
                 pagesuivante.Visibility = Visibility.Visible;
+                pagesNaviguer.Visibility = Visibility.Visible;
+                ScrollPagesNaviguer.Visibility = Visibility.Visible;
 
                 pagesSontAffiche = false;
                 dossierGrid.Children.Clear();
@@ -192,6 +230,7 @@ namespace WpfApplication1
                 feuille.Text = pages[index];
                 titre.Text = titres[index];
                 numpage.Text = "Page " + (index + 1);
+                updatePagesNaviguer();
             }
             else
             {
@@ -199,6 +238,51 @@ namespace WpfApplication1
                 drawPages();
                 pagesSontAffiche = true;
             }
+        }
+
+        private void updatePagesNaviguer()
+        {
+            int i = 0;
+            int j = 0;
+            pagesNaviguer.Children.Clear();
+            foreach (String s in pages)
+            {
+                TextBlock txtBlock = new TextBlock();
+                txtBlock.Width = 100;
+                txtBlock.Text = s;
+                txtBlock.Margin = new Thickness(6);
+                txtBlock.Background = Brushes.LightGray;
+                txtBlock.FontFamily = new FontFamily("Freestyle Script");
+                txtBlock.FontSize = 3;
+                txtBlock.TextWrapping = TextWrapping.Wrap;
+                if (i == index)
+                {
+                    txtBlock.Background = Brushes.Yellow;
+                }
+                //txtBlock.TextAlignment = TextAlignment.Center;
+                pagesNaviguer.Children.Add(txtBlock);
+                i++;
+            }
+        }
+
+        private void pagesNaviguer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            feuille.Visibility = Visibility.Visible;
+            titre.Visibility = Visibility.Visible;
+            numpage.Visibility = Visibility.Visible;
+            pageprecedente.Visibility = Visibility.Visible;
+            pagesuivante.Visibility = Visibility.Visible;
+            pagesNaviguer.Visibility = Visibility.Visible;
+            ScrollPagesNaviguer.Visibility = Visibility.Visible;
+
+            pagesSontAffiche = false;
+            dossierGrid.Children.Clear();
+
+            index = 2;
+            feuille.Text = pages[index];
+            titre.Text = titres[index];
+            numpage.Text = "Page " + (index + 1);
+            updatePagesNaviguer();
         }
     }
 }

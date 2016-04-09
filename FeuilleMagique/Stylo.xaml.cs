@@ -31,5 +31,15 @@ namespace FeuilleMagique
         {
             mainWindow.drawFolder();
         }
+
+        private void buttonPageSuivante_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.displayPageSuivante();
+        }
+
+        private void buttonPagePrecedente_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.displayPagePrecedente();
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using WpfApplication1;
 
 namespace FeuilleMagique
 {
@@ -15,6 +16,9 @@ namespace FeuilleMagique
         private bool _isInitialized;
         private GifBitmapDecoder _gifDecoder;
         private Int32Animation _animation;
+        public MainWindow mainWindow;
+        public Boolean isPageSuivante = true;
+        
 
         public int FrameIndex
         {
@@ -60,6 +64,15 @@ namespace FeuilleMagique
             if(gifImage.FrameIndex == gifImage._gifDecoder.Frames.Count-1)
             {
                 gifImage.StopAnimation();
+                if (gifImage.isPageSuivante)
+                {
+                    gifImage.mainWindow.displayPageSuivante();
+                }
+                else
+                {
+                    gifImage.mainWindow.displayPagePrecedente();
+                }
+                
             }
         }
 

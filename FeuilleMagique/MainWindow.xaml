@@ -39,6 +39,8 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
         </Grid>
-
+        <ScrollViewer x:Name="ScrollPagesNaviguer" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible" Margin="118,651,63.4,1.6" Visibility="Hidden">
+            <StackPanel x:Name="pagesNaviguer" HorizontalAlignment="Left" Background="#FFDEDEDE" Height="68" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" CanHorizontallyScroll="True" Orientation="Horizontal"  Visibility="Hidden" MouseDown="pagesNaviguer_MouseDown"/>
+        </ScrollViewer>
     </Grid>
 </Window>

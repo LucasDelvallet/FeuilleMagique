@@ -44,12 +44,25 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+            Application.Current.MainWindow.WindowState = WindowState.Maximized;
 
             cloud = new Cloud(this);
+            cloud.Topmost = true;
             cloud.Show();
             stylo = new Stylo(this);
+            stylo.Topmost = true;
             stylo.Show();
-            
+
+            double W = System.Windows.SystemParameters.FullPrimaryScreenWidth;
+            double H = System.Windows.SystemParameters.FullPrimaryScreenHeight;
+
+            cloud.Left = W - cloud.Width ;
+            cloud.Top = 50;
+
+            stylo.Left = W - stylo.Width;
+            stylo.Top = 50 + cloud.Height + cloud.Top;
+
+
             numpage.Text = "Page " + (indexPages + 1);
 
             dossiers.Add("AEL"); pages.Add(new List<String>());
@@ -273,6 +286,9 @@ namespace WpfApplication1
                     j++;
                 }
             }
+
+            titre.Text = dossiers[indexDossier];
+            titre.Visibility = Visibility.Visible;
         }
 
         private void dossierGrid_MouseDown(object sender, MouseButtonEventArgs e)

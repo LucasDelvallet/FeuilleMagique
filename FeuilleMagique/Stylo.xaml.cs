@@ -34,12 +34,18 @@ namespace FeuilleMagique
 
         private void buttonPageSuivante_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.displayPageSuivante();
+            if (mainWindow.dossierGrid.Visibility == Visibility.Hidden)
+            {
+                mainWindow.displayPageSuivante();
+            }
         }
 
         private void buttonPagePrecedente_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.displayPagePrecedente();
+            if (mainWindow.dossierGrid.Visibility == Visibility.Hidden)
+            {
+                mainWindow.displayPagePrecedente();
+            }
         }
     }
 }

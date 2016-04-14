@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace WpfApplication1
@@ -21,47 +22,82 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static List<String> pages = new List<string>();
-        public static List<String> titres = new List<string>();
-        int index = 0;
+        public static List<List<String>> pages = new List<List<string>>();
+        public static List<String> dossiers = new List<string>();
+        public int indexPages = 0;
+        public int indexDossier = 0;
+
         Cloud cloud ;
         Stylo stylo;
         Boolean pagesSontAffiche = false;
 
-        public static List<String> getPages()
+        public static List<List<String>> getPages()
         {
             return pages;
         }
 
-        public static List<String> getTitres()
+        public static List<String> getDossiers()
         {
-            return titres;
+            return dossiers;
         }
 
         public MainWindow()
         {
             InitializeComponent();
 
-            cloud = new Cloud();
+            cloud = new Cloud(this);
             cloud.Show();
             stylo = new Stylo(this);
             stylo.Show();
             
-            numpage.Text = "Page " + (index + 1);
+            numpage.Text = "Page " + (indexPages + 1);
 
-            titres.Add("AEL");
-            titres.Add("AEO");
-            titres.Add("IHM");
-            titres.Add("GL");
-            titres.Add("COO");
-            titres.Add("BL");
-            titres.Add("CAR");
+            dossiers.Add("AEL"); pages.Add(new List<String>());
+            dossiers.Add("AEO"); pages.Add(new List<String>());
+            dossiers.Add("IHM"); pages.Add(new List<String>());
+            dossiers.Add("GL"); pages.Add(new List<String>());
+            dossiers.Add("COO"); pages.Add(new List<String>());
+            dossiers.Add("BL"); pages.Add(new List<String>());
+            dossiers.Add("CAR"); pages.Add(new List<String>());
 
-            pages.Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
-            pages.Add("Morbi placerat nibh eros, eget fermentum nulla cursus non. Cras sit amet justo eleifend nibh feugiat dapibus eget quis metus.");
-            pages.Add("Duis aliquet vel ligula sagittis mollis. Nam sollicitudin venenatis felis, eu fringilla nisl bibendum ullamcorper. Praesent aliquet varius nunc, a pharetra orci bibendum ac. \n  Praesent et elementum est. Ut vitae malesuada nisi, sed tincidunt diam.  \n Suspendisse fringilla blandit mauris nec porttitor.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n  Cras sed est vel metus gravida malesuada. \n  Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.");
-            pages.Add("Aliquam iaculis quam ipsum, ut underlined eros vulputate eget. Proin vitae vestibulum lorem");
-            pages.Add("");
+            pages[0].Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
+            pages[0].Add("Morbi placerat nibh eros, eget fermentum nulla cursus non. Cras sit amet justo eleifend nibh feugiat dapibus eget quis metus.");
+            pages[0].Add("Duis aliquet vel ligula sagittis mollis. Nam sollicitudin venenatis felis, eu fringilla nisl bibendum ullamcorper. Praesent aliquet varius nunc, a pharetra orci bibendum ac. \n  Praesent et elementum est. Ut vitae malesuada nisi, sed tincidunt diam.  \n Suspendisse fringilla blandit mauris nec porttitor.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n  Cras sed est vel metus gravida malesuada. \n  Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.");
+            pages[0].Add("Aliquam iaculis quam ipsum, ut underlined eros vulputate eget. Proin vitae vestibulum lorem");
+            pages[0].Add("");
+
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
+            pages[1].Add("");
+
+            pages[2].Add("nte mollis at.");
+            pages[2].Add("Morbi placerat nibh eus eget quis metus.");
+            pages[2].Add("Duis aliquetndum ac. \n  Praesent encidunt diam.  \n Suspendisse fring \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n  Cras sed est vel metus gravida malesuada. \n  Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.");
+            pages[2].Add("Aliquam os vulputate eget. Proin vitae vestibulum lorem");
+            pages[2].Add("");
+
+            pages[3].Add("Lorem ipsum dolor sit ametras sit amet justo eleifend nibh feugiat dapibus eget quis metus.");
+            pages[3].Add("Denenatis felis, eu fringilla nisl bibendum ullamcorper. Praesent aliquet varius nunc, a pharetra orci bibendum ac. \n  Praesent et elementum est. Ut vitae malesuada nisi, sed tincidunt diam.  \n Suspendisse fringilla blandit mauris nec porttitor.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n  Cras sed est vel metus gravida malesuada. \n  Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.");
+            pages[3].Add("Al");
+            pages[3].Add("");
+
+            pages[4].Add("Bouh.");
+            pages[4].Add("");
+
+            pages[5].Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
+            pages[5].Add("Aliquam iaculis quam ipsum, ut underlined eros vulputate eget. Proin vitae vestibulum lorem");
+            pages[5].Add("");
+
+            pages[6].Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. ");
+            pages[6].Add("");
+
 
             feuille.Visibility = Visibility.Hidden;
             drawFolder();
@@ -93,24 +129,24 @@ namespace WpfApplication1
             pagesNaviguer.Visibility = Visibility.Visible;
             ScrollPagesNaviguer.Visibility = Visibility.Visible;
 
-            pages[index] = feuille.Text;
+            pages[indexDossier][indexPages] = feuille.Text;
 
-            if (pages.Count - 1 == index)
+            if (pages[indexDossier].Count - 1 == indexPages)
             {
                 feuille.Text = "";
                 //titre.Text = "";
-                index++;
-                pages.Add("");
+                indexPages++;
+                pages[indexDossier].Add("");
                 //titres.Add("");
             }
             else
             {
-                index++;
-                feuille.Text = pages[index];
+                indexPages++;
+                feuille.Text = pages[indexDossier][indexPages];
                 //titre.Text = titres[index];
             }
             
-            numpage.Text = "Page " + (index + 1);
+            numpage.Text = "Page " + (indexPages + 1);
             updatePagesNaviguer();
         }
 
@@ -135,14 +171,14 @@ namespace WpfApplication1
             pagesNaviguer.Visibility = Visibility.Visible;
             ScrollPagesNaviguer.Visibility = Visibility.Visible;
 
-            pages[index] = feuille.Text;
-            if (index != 0)
+            pages[indexDossier][indexPages] = feuille.Text;
+            if (indexPages != 0)
             {
-                index--;
+                indexPages--;
             }
-            feuille.Text = pages[index];
+            feuille.Text = pages[indexDossier][indexPages];
             //titre.Text = titres[index];
-            numpage.Text = "Page " + (index + 1);
+            numpage.Text = "Page " + (indexPages + 1);
             updatePagesNaviguer();
         }
 
@@ -156,18 +192,38 @@ namespace WpfApplication1
         {
             int i = 0;
             int j = 0;
-            foreach(String s in titres){
+            foreach(String s in dossiers){
+                int locali = i;
+                int localj = j;
+                Panel pnl = new WrapPanel();
+                pnl.Width = 100;
+                pnl.Height = 100;
+
+                Image img = new Image();
+                var uriSource = new Uri(@"/FeuilleMagique;component/Images/folder.png", UriKind.Relative);
+                img.Source = new BitmapImage(uriSource);
+                img.Width = 100;
+                img.Height = 60;
+
                 TextBlock txtBlock = new TextBlock();
                 txtBlock.Text = s;
                 txtBlock.Margin = new Thickness(6) ;
-                txtBlock.Background = Brushes.LightGray;
                 txtBlock.FontFamily = titre.FontFamily;
                 txtBlock.FontSize = titre.FontSize;
                 txtBlock.TextWrapping = TextWrapping.Wrap;
                 txtBlock.TextAlignment = TextAlignment.Center;
-                dossierGrid.Children.Add(txtBlock);
-                Grid.SetColumn(txtBlock, i);
-                Grid.SetRow(txtBlock, j);
+
+                pnl.MouseDown += new MouseButtonEventHandler(delegate (object sender, MouseButtonEventArgs e)
+                {
+                    indexDossier = locali + (localj*4);
+                });
+
+                pnl.Children.Add(img);
+                pnl.Children.Add(txtBlock);
+
+                dossierGrid.Children.Add(pnl);
+                Grid.SetColumn(pnl, i);
+                Grid.SetRow(pnl, j);
                 i++;
                 if(i == 4)
                 {
@@ -175,6 +231,9 @@ namespace WpfApplication1
                     j++;
                 }
             }
+
+
+
             feuille.Visibility = Visibility.Hidden;
             titre.Visibility = Visibility.Hidden;
             numpage.Visibility = Visibility.Hidden;
@@ -182,18 +241,26 @@ namespace WpfApplication1
             pagesuivante.Visibility = Visibility.Hidden;
             pagesNaviguer.Visibility = Visibility.Hidden;
             ScrollPagesNaviguer.Visibility = Visibility.Hidden;
+            dossierGrid.Visibility = Visibility.Visible;
         }
 
         public void drawPages()
         {
             int i = 0;
             int j = 0;
-            foreach (String s in pages)
+            foreach (String s in pages[indexDossier])
             {
+                Uri resourceUri = new Uri("Images/feuilleCarreau.gif", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+
                 TextBlock txtBlock = new TextBlock();
                 txtBlock.Text = s;
                 txtBlock.Margin = new Thickness(6);
-                txtBlock.Background = Brushes.LightGray;
+                txtBlock.Background = brush;
                 txtBlock.FontFamily = titre.FontFamily;
                 txtBlock.FontSize = 3;             
                 dossierGrid.Children.Add(txtBlock);
@@ -222,14 +289,14 @@ namespace WpfApplication1
                 pagesuivante.Visibility = Visibility.Visible;
                 pagesNaviguer.Visibility = Visibility.Visible;
                 ScrollPagesNaviguer.Visibility = Visibility.Visible;
+                dossierGrid.Visibility = Visibility.Hidden;
 
                 pagesSontAffiche = false;
                 dossierGrid.Children.Clear();
 
-                index = 2;
-                feuille.Text = pages[index];
-                titre.Text = titres[index];
-                numpage.Text = "Page " + (index + 1);
+                feuille.Text = pages[indexDossier][indexPages];
+                titre.Text = dossiers[indexDossier];
+                numpage.Text = "Page " + (indexPages + 1);
                 updatePagesNaviguer();
             }
             else
@@ -243,26 +310,48 @@ namespace WpfApplication1
         private void updatePagesNaviguer()
         {
             int i = 0;
-            int j = 0;
             pagesNaviguer.Children.Clear();
-            foreach (String s in pages)
+            foreach (String s in pages[indexDossier])
             {
+                int locali = i;
+                Uri resourceUri = new Uri("Images/feuilleCarreau.gif", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+
                 TextBlock txtBlock = new TextBlock();
-                txtBlock.Width = 100;
+                txtBlock.Width = 50;
+                txtBlock.Height = 80;
                 txtBlock.Text = s;
-                txtBlock.Margin = new Thickness(6);
-                txtBlock.Background = Brushes.LightGray;
+                txtBlock.Margin = new Thickness(6,1,6,0);
+                txtBlock.Background = brush;
                 txtBlock.FontFamily = new FontFamily("Freestyle Script");
                 txtBlock.FontSize = 3;
                 txtBlock.TextWrapping = TextWrapping.Wrap;
-                if (i == index)
+                if (i == indexPages)
                 {
                     txtBlock.Background = Brushes.Yellow;
                 }
-                //txtBlock.TextAlignment = TextAlignment.Center;
+                
+                txtBlock.MouseDown += new MouseButtonEventHandler(delegate (object sender, MouseButtonEventArgs e)
+                {
+                    indexPages = locali;
+                });
+
                 pagesNaviguer.Children.Add(txtBlock);
                 i++;
             }
+        }
+
+
+        private void GridElementClick(object sender, RoutedEventArgs e)
+        {
+            Control _btn = sender as Control;
+
+            int _row = (int)_btn.GetValue(Grid.RowProperty);
+            int _column = (int)_btn.GetValue(Grid.ColumnProperty);
         }
 
         private void pagesNaviguer_MouseDown(object sender, MouseButtonEventArgs e)
@@ -278,10 +367,9 @@ namespace WpfApplication1
             pagesSontAffiche = false;
             dossierGrid.Children.Clear();
 
-            index = 2;
-            feuille.Text = pages[index];
-            titre.Text = titres[index];
-            numpage.Text = "Page " + (index + 1);
+            feuille.Text = pages[indexDossier][indexPages];
+            titre.Text = dossiers[indexDossier];
+            numpage.Text = "Page " + (indexPages + 1);
             updatePagesNaviguer();
         }
     }

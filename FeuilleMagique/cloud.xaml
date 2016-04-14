@@ -7,7 +7,7 @@
             <StackPanel x:Name="dossiers" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Margin="10,10,0,0" Background="#FFE2E2E2" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" CanHorizontallyScroll="True" Orientation="Horizontal"/>
         </ScrollViewer>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible" Margin="0,165,0.4,-75">
-            <StackPanel x:Name="pages" HorizontalAlignment="Left" Background="#FFDEDEDE" Margin="10,10,0,0" Height="100" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" CanHorizontallyScroll="True" Orientation="Horizontal" MouseDown="pages_MouseDown"/>
+            <StackPanel x:Name="pages" HorizontalAlignment="Left" Background="#FFDEDEDE" Margin="10,10,0,0" Height="100" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" CanHorizontallyScroll="True" Orientation="Horizontal"/>
         </ScrollViewer>
         <Label x:Name="label"  Content="Dossiers :" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="217"/>
         <Label x:Name="label_Copy"  Content="Fichiers :" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="217" Margin="0,147,0,0"/>

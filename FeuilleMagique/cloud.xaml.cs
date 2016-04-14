@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
@@ -24,12 +25,14 @@ namespace WpfApplication1
     {
         List<String> p;
         List<String> t;
+        MainWindow mainWindow;
+        int indexDossier = 0;
 
-
-        public Cloud()
+        public Cloud(MainWindow m)
         {
             InitializeComponent();
             InitTimer();
+            mainWindow = m;
         }
 
         private DispatcherTimer timer1;
@@ -37,14 +40,14 @@ namespace WpfApplication1
         {
             timer1 = new DispatcherTimer();
             timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = new TimeSpan(0, 0, 2);
+            timer1.Interval = new TimeSpan(0, 0, 1);
             timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            p = MainWindow.pages;
-            t = MainWindow.titres;
+            p = MainWindow.pages[indexDossier];
+            t = MainWindow.dossiers;
             updateCloud();
         }
 
@@ -54,46 +57,79 @@ namespace WpfApplication1
             dossiers.Children.Clear();
             foreach (String s in t)
             {
+                int locali = i;
+                Panel pnl = new WrapPanel(); 
+                pnl.Width = 100;
+                pnl.Height = 100;
+
+                Image img = new Image();
+                var uriSource = new Uri(@"/FeuilleMagique;component/Images/folder.png", UriKind.Relative);
+                img.Source = new BitmapImage(uriSource);
+                img.Width = 100;
+                img.Height = 60;
+
                 TextBlock txtBlock = new TextBlock();
                 txtBlock.Width = 100;
                 txtBlock.Text = s;
                 txtBlock.Margin = new Thickness(6);
                 txtBlock.Background = Brushes.LightGray;
                 txtBlock.FontFamily = new FontFamily("Freestyle Script");
-                if (i == 2)
+                if (i == indexDossier)
                 {
                     txtBlock.Background = Brushes.Yellow;
                 }
+
+                pnl.MouseDown += new MouseButtonEventHandler(delegate (object sender, MouseButtonEventArgs e)
+                {
+                    indexDossier = locali;
+                    updateCloud();
+                });
+
                 txtBlock.FontSize = 25;
                 txtBlock.TextWrapping = TextWrapping.Wrap;
                 txtBlock.TextAlignment = TextAlignment.Center;
-                dossiers.Children.Add(txtBlock);
+
+               
+                pnl.Children.Add(img);
+                pnl.Children.Add(txtBlock);
+                dossiers.Children.Add(pnl);
                 i++;
             }
 
+            p = MainWindow.pages[indexDossier];
             i = 0;
             j = 0;
             pages.Children.Clear();
             foreach (String s in p)
             {
+                int locali = i;
+                Uri resourceUri = new Uri("Images/feuilleCarreau.gif", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+
+
                 TextBlock txtBlock = new TextBlock();
-                txtBlock.Width = 100;
+                txtBlock.Width = 80;
+                txtBlock.Height = 100;
                 txtBlock.Text = s;
                 txtBlock.Margin = new Thickness(6);
-                txtBlock.Background = Brushes.LightGray;
+                txtBlock.Background = brush;
                 txtBlock.FontFamily = new FontFamily("Freestyle Script");
                 txtBlock.FontSize = 3;
                 txtBlock.TextWrapping = TextWrapping.Wrap;
-                //txtBlock.TextAlignment = TextAlignment.Center;
+
+                txtBlock.MouseDown += new MouseButtonEventHandler(delegate (object sender, MouseButtonEventArgs e)
+                {
+                    System.IO.File.WriteAllText(@"test.txt", p[locali]);
+                    System.Diagnostics.Process.Start(@"test.txt");
+                });
                 pages.Children.Add(txtBlock);
                 i++;
             }
         }
 
-        private void pages_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            System.IO.File.WriteAllText(@"test.txt", "Duis aliquet vel ligula sagittis mollis. Nam sollicitudin venenatis felis, eu fringilla nisl bibendum ullamcorper. Praesent aliquet varius nunc, a pharetra orci bibendum ac. \n  Praesent et elementum est. Ut vitae malesuada nisi, sed tincidunt diam.  \n Suspendisse fringilla blandit mauris nec porttitor.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n  Cras sed est vel metus gravida malesuada. \n  Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.  \n Cras sed est vel metus gravida malesuada.");
-            System.Diagnostics.Process.Start(@"test.txt");
-        }
     }
 }

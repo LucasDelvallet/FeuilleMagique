@@ -25,7 +25,7 @@
 
         <TextBox x:Name="titre" HorizontalAlignment="Left" Height="49" Margin="118,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="490" Background="{x:Null}" FontFamily="Freestyle Script" FontSize="30" BorderBrush="{x:Null}"/>
         <TextBlock x:Name="numpage" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontFamily="Freestyle Script" FontSize="25" Margin="10,8,0,0"/>
-        <Grid x:Name="dossierGrid" HorizontalAlignment="Left" Height="622" Margin="118,59,0,0" VerticalAlignment="Top" Width="490" MouseDown="dossierGrid_MouseDown">
+        <Grid x:Name="dossierGrid" Background="LightGray" HorizontalAlignment="Left" Height="622" Margin="118,59,0,0" VerticalAlignment="Top" Width="490" MouseDown="dossierGrid_MouseDown">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80*" />
                 <RowDefinition Height="80*" />

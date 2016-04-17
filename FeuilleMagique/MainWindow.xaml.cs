@@ -29,7 +29,7 @@ namespace WpfApplication1
 
         Cloud cloud ;
         Stylo stylo;
-        Boolean pagesSontAffiche = false;
+       public bool pagesSontAffiche = false;
 
         public static List<List<String>> getPages()
         {
@@ -205,7 +205,7 @@ namespace WpfApplication1
         {
             int i = 0;
             int j = 0;
-            foreach(String s in dossiers){
+            foreach (String s in dossiers){
                 int locali = i;
                 int localj = j;
                 Panel pnl = new WrapPanel();
@@ -289,6 +289,28 @@ namespace WpfApplication1
 
             titre.Text = dossiers[indexDossier];
             titre.Visibility = Visibility.Visible;
+            titre.IsEnabled = false;
+        }
+
+        public void afficher_Page_Selectionne()
+        {
+            titre.IsEnabled = true;
+            feuille.Visibility = Visibility.Visible;
+            titre.Visibility = Visibility.Visible;
+            numpage.Visibility = Visibility.Visible;
+            pageprecedente.Visibility = Visibility.Visible;
+            pagesuivante.Visibility = Visibility.Visible;
+            pagesNaviguer.Visibility = Visibility.Visible;
+            ScrollPagesNaviguer.Visibility = Visibility.Visible;
+            dossierGrid.Visibility = Visibility.Hidden;
+
+            pagesSontAffiche = false;
+            dossierGrid.Children.Clear();
+
+            feuille.Text = pages[indexDossier][indexPages];
+            titre.Text = dossiers[indexDossier];
+            numpage.Text = "Page " + (indexPages + 1);
+            updatePagesNaviguer();
         }
 
         private void dossierGrid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -298,22 +320,7 @@ namespace WpfApplication1
 
             if (pagesSontAffiche)
             {
-                feuille.Visibility = Visibility.Visible;
-                titre.Visibility = Visibility.Visible;
-                numpage.Visibility = Visibility.Visible;
-                pageprecedente.Visibility = Visibility.Visible;
-                pagesuivante.Visibility = Visibility.Visible;
-                pagesNaviguer.Visibility = Visibility.Visible;
-                ScrollPagesNaviguer.Visibility = Visibility.Visible;
-                dossierGrid.Visibility = Visibility.Hidden;
-
-                pagesSontAffiche = false;
-                dossierGrid.Children.Clear();
-
-                feuille.Text = pages[indexDossier][indexPages];
-                titre.Text = dossiers[indexDossier];
-                numpage.Text = "Page " + (indexPages + 1);
-                updatePagesNaviguer();
+                afficher_Page_Selectionne();
             }
             else
             {
@@ -387,6 +394,51 @@ namespace WpfApplication1
             titre.Text = dossiers[indexDossier];
             numpage.Text = "Page " + (indexPages + 1);
             updatePagesNaviguer();
+        }
+
+        private void titre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (feuille.Visibility == Visibility.Visible)
+            {
+                String t = ((TextBox)sender).Text;
+                if (dossiers.Contains(t))
+                {
+                    pages[indexDossier].RemoveAt(indexPages);
+                    if (pages[indexDossier].Count == 0) { 
+                        dossiers.RemoveAt(indexDossier);
+                        pages.RemoveAt(indexDossier);
+                    }
+
+                    indexDossier = dossiers.IndexOf(t);
+                    indexPages = pages[indexDossier].Count;
+
+                    /*if (pages[indexDossier].Last().Equals(""))
+                    {
+                        pages[indexDossier].RemoveAt(pages[indexDossier].Count - 1);
+                        indexPages--;
+                    }*/
+                    pages[indexDossier].Add(feuille.Text);
+                    afficher_Page_Selectionne();
+                }
+                else
+                {
+                    dossiers.Add(t);
+                    pages.Add(new List<String>());
+                    pages[dossiers.Count - 1].Add(feuille.Text);
+
+                    pages[indexDossier].RemoveAt(indexPages);
+                    if (pages[indexDossier].Count == 0)
+                    {
+                        dossiers.RemoveAt(indexDossier);
+                        pages.RemoveAt(indexDossier);
+                    }
+
+                    indexDossier = dossiers.Count - 1;
+                    indexPages = 0;
+                    afficher_Page_Selectionne();
+                }
+            }
+
         }
     }
 }

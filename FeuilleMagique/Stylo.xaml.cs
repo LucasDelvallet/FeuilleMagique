@@ -29,6 +29,8 @@ namespace FeuilleMagique
 
         private void buttonDossier_Click(object sender, RoutedEventArgs e)
         {
+            mainWindow.pagesSontAffiche = false;
+            mainWindow.dossierGrid.Children.Clear();
             mainWindow.drawFolder();
         }
 
@@ -46,6 +48,18 @@ namespace FeuilleMagique
             {
                 mainWindow.displayPagePrecedente();
             }
+        }
+
+        private void NouvellePage_Click(object sender, RoutedEventArgs e)
+        {
+
+            mainWindow.indexPages = 0;
+            mainWindow.indexDossier = MainWindow.dossiers.Count;
+            MainWindow.dossiers.Add("");
+            MainWindow.pages.Add(new List<String>());
+            MainWindow.pages[mainWindow.indexDossier].Add("");
+
+            mainWindow.afficher_Page_Selectionne();
         }
     }
 }

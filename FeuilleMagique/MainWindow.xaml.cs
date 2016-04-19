@@ -101,7 +101,7 @@ namespace WpfApplication1
             pages[3].Add("Al");
             pages[3].Add("");
 
-            pages[4].Add("Bouh.");
+            pages[4].Add("Ceci est le cours de COO. Il présente des tas de trucs en rapport avec la programation. ");
             pages[4].Add("");
 
             pages[5].Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
@@ -263,6 +263,8 @@ namespace WpfApplication1
             int j = 0;
             foreach (String s in pages[indexDossier])
             {
+                int locali = i;
+                int localj = j;
                 Uri resourceUri = new Uri("Images/feuilleCarreau.gif", UriKind.Relative);
                 StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
 
@@ -279,6 +281,12 @@ namespace WpfApplication1
                 dossierGrid.Children.Add(txtBlock);
                 Grid.SetColumn(txtBlock, i);
                 Grid.SetRow(txtBlock, j);
+
+                txtBlock.MouseDown += new MouseButtonEventHandler(delegate (object sender, MouseButtonEventArgs e)
+                {
+                    indexPages = locali + (localj * 4);
+                });
+
                 i++;
                 if (i == 4)
                 {
@@ -398,9 +406,9 @@ namespace WpfApplication1
 
         private void titre_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (feuille.Visibility == Visibility.Visible)
+            String t = ((TextBox)sender).Text;
+            if (feuille.Visibility == Visibility.Visible && t!= "" )
             {
-                String t = ((TextBox)sender).Text;
                 if (dossiers.Contains(t))
                 {
                     pages[indexDossier].RemoveAt(indexPages);

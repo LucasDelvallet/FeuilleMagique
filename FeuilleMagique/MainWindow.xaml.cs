@@ -47,6 +47,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
+           
 
             cloud = new Cloud(this);
             cloud.Topmost = true;
@@ -59,10 +60,10 @@ namespace WpfApplication1
             double H = System.Windows.SystemParameters.FullPrimaryScreenHeight;
 
             cloud.Left = W - cloud.Width ;
-            cloud.Top = 50;
+            cloud.Top = 20;
 
             stylo.Left = W - stylo.Width;
-            stylo.Top = 50 + cloud.Height + cloud.Top;
+            stylo.Top = 20 + cloud.Height + cloud.Top;
 
 
             numpage.Text = "Page " + (indexPages + 1);
@@ -304,7 +305,18 @@ namespace WpfApplication1
 
                 txtBlock.MouseDown += new MouseButtonEventHandler(delegate (object sender, MouseButtonEventArgs e)
                 {
-                    indexPages = locali + (localj * 4);
+                    if (e.RightButton == MouseButtonState.Pressed)
+                    {
+                        previsualisationPage(locali + (localj * 4));
+                    }
+                    if (e.RightButton == MouseButtonState.Released)
+                    {
+                        closePrevisualisationPage();
+                    }
+                    if (e.LeftButton == MouseButtonState.Pressed)
+                    {
+                        indexPages = locali + (localj * 4);
+                    }
                 });
 
                 i++;
@@ -318,6 +330,40 @@ namespace WpfApplication1
             titre.Text = dossiers[indexDossier];
             titre.Visibility = Visibility.Visible;
             titre.IsEnabled = false;
+        }
+
+
+        bool isPrevisualising = false;
+        public void previsualisationPage(int i)
+        {
+            isPrevisualising = true;
+            feuille.Visibility = Visibility.Visible;
+            paintSurface.Visibility = Visibility.Visible;
+            rctPreview.Visibility = Visibility.Visible;
+            dossierGrid.Visibility = Visibility.Hidden;
+            feuille.IsEnabled = false;
+            paintSurface.IsEnabled = false;
+
+
+            feuille.Text = pages[indexDossier][indexPages];
+            paintSurface.Children.Clear();
+            List<Line> lines_l = lines[indexDossier][i];
+            foreach (Line line in lines_l)
+            {
+                paintSurface.Children.Add(line);
+            }
+
+        }
+
+        public void closePrevisualisationPage()
+        {
+            isPrevisualising = false;
+            feuille.Visibility = Visibility.Hidden;
+            paintSurface.Visibility = Visibility.Hidden;
+            rctPreview.Visibility = Visibility.Hidden;
+            dossierGrid.Visibility = Visibility.Visible;
+            feuille.IsEnabled = true;
+            paintSurface.IsEnabled = true;
         }
 
         public void afficher_Page_Selectionne()
@@ -353,13 +399,16 @@ namespace WpfApplication1
 
             if (pagesSontAffiche)
             {
-                afficher_Page_Selectionne();
+                if (!isPrevisualising)
+                {
+                    afficher_Page_Selectionne();
+                }
             }
             else
             {
-                dossierGrid.Children.Clear();
-                drawPages();
-                pagesSontAffiche = true;
+                    dossierGrid.Children.Clear();
+                    drawPages();
+                    pagesSontAffiche = true;
             }
         }
 
@@ -523,6 +572,22 @@ namespace WpfApplication1
             foreach (Line line in lines_l)
             {
                 paintSurface.Children.Add(line);
+            }
+        }
+
+        private void feuille_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (isPrevisualising)
+            {
+                closePrevisualisationPage();
+            }
+        }
+
+        private void rctPreview_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (isPrevisualising)
+            {
+                closePrevisualisationPage();
             }
         }
     }

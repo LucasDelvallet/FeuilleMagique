@@ -58,8 +58,11 @@ namespace FeuilleMagique
             MainWindow.dossiers.Add("");
             MainWindow.pages.Add(new List<String>());
             MainWindow.pages[mainWindow.indexDossier].Add("");
+            MainWindow.lines.Add(new List<List<Line>>());
+            MainWindow.lines[mainWindow.indexDossier].Add(new List<Line>());
 
             mainWindow.afficher_Page_Selectionne();
         }
+
     }
 }

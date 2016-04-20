@@ -26,6 +26,8 @@ namespace WpfApplication1
         public static List<String> dossiers = new List<string>();
         public int indexPages = 0;
         public int indexDossier = 0;
+        Point currentPoint = new Point();
+        public static List<List<List<Line>>> lines = new List<List<List<Line>>>();
 
         Cloud cloud ;
         Stylo stylo;
@@ -65,13 +67,13 @@ namespace WpfApplication1
 
             numpage.Text = "Page " + (indexPages + 1);
 
-            dossiers.Add("AEL"); pages.Add(new List<String>());
-            dossiers.Add("AEO"); pages.Add(new List<String>());
-            dossiers.Add("IHM"); pages.Add(new List<String>());
-            dossiers.Add("GL"); pages.Add(new List<String>());
-            dossiers.Add("COO"); pages.Add(new List<String>());
-            dossiers.Add("BL"); pages.Add(new List<String>());
-            dossiers.Add("CAR"); pages.Add(new List<String>());
+            dossiers.Add("AEL"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("AEO"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("IHM"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("GL"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("COO"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("BL"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("CAR"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
 
             pages[0].Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
             pages[0].Add("Morbi placerat nibh eros, eget fermentum nulla cursus non. Cras sit amet justo eleifend nibh feugiat dapibus eget quis metus.");
@@ -89,6 +91,7 @@ namespace WpfApplication1
             pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
             pages[1].Add("ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN ANPAN \n ");
             pages[1].Add("");
+
 
             pages[2].Add("nte mollis at.");
             pages[2].Add("Morbi placerat nibh eus eget quis metus.");
@@ -112,6 +115,18 @@ namespace WpfApplication1
             pages[6].Add("");
 
 
+            //creer la liste des lines pour le canvas
+            int i = 0;
+            foreach(List<String> pages_s in pages)
+            {
+                foreach(String page in pages_s)
+                {
+                    lines[i].Add(new List<Line>());
+                }
+                i++;
+            }
+
+
             feuille.Visibility = Visibility.Hidden;
             drawFolder();
 
@@ -126,6 +141,7 @@ namespace WpfApplication1
             titre.Visibility = Visibility.Hidden;
             numpage.Visibility = Visibility.Hidden;
             feuille.Visibility = Visibility.Hidden;
+            paintSurface.Visibility = Visibility.Hidden;
             pagesNaviguer.Visibility = Visibility.Hidden;
             ScrollPagesNaviguer.Visibility = Visibility.Hidden;
 
@@ -139,6 +155,7 @@ namespace WpfApplication1
             titre.Visibility = Visibility.Visible;
             numpage.Visibility = Visibility.Visible;
             feuille.Visibility = Visibility.Visible;
+            paintSurface.Visibility = Visibility.Visible;
             pagesNaviguer.Visibility = Visibility.Visible;
             ScrollPagesNaviguer.Visibility = Visibility.Visible;
 
@@ -150,6 +167,7 @@ namespace WpfApplication1
                 //titre.Text = "";
                 indexPages++;
                 pages[indexDossier].Add("");
+                lines[indexDossier].Add(new List<Line>());
                 //titres.Add("");
             }
             else
@@ -168,6 +186,7 @@ namespace WpfApplication1
             titre.Visibility = Visibility.Hidden;
             numpage.Visibility = Visibility.Hidden;
             feuille.Visibility = Visibility.Hidden;
+            paintSurface.Visibility = Visibility.Hidden;
             pagesNaviguer.Visibility = Visibility.Hidden;
             ScrollPagesNaviguer.Visibility = Visibility.Hidden;
 
@@ -181,6 +200,7 @@ namespace WpfApplication1
             titre.Visibility = Visibility.Visible;
             numpage.Visibility = Visibility.Visible;
             feuille.Visibility = Visibility.Visible;
+            paintSurface.Visibility = Visibility.Visible;
             pagesNaviguer.Visibility = Visibility.Visible;
             ScrollPagesNaviguer.Visibility = Visibility.Visible;
 
@@ -314,9 +334,14 @@ namespace WpfApplication1
 
             pagesSontAffiche = false;
             dossierGrid.Children.Clear();
+            paintSurface.Children.Clear();
 
             feuille.Text = pages[indexDossier][indexPages];
             titre.Text = dossiers[indexDossier];
+            /*foreach(Line line in test)
+            {
+                paintSurface.Children.Add(line);
+            }*/
             numpage.Text = "Page " + (indexPages + 1);
             updatePagesNaviguer();
         }
@@ -340,6 +365,7 @@ namespace WpfApplication1
 
         private void updatePagesNaviguer()
         {
+            
             int i = 0;
             pagesNaviguer.Children.Clear();
             foreach (String s in pages[indexDossier])
@@ -374,6 +400,7 @@ namespace WpfApplication1
                 pagesNaviguer.Children.Add(txtBlock);
                 i++;
             }
+            update_Canvas();
         }
 
 
@@ -412,10 +439,16 @@ namespace WpfApplication1
                 if (dossiers.Contains(t))
                 {
                     pages[indexDossier].RemoveAt(indexPages);
+                    List<Line> temp = new List<Line>(lines[indexDossier][indexPages]);
+                    lines[indexDossier].RemoveAt(indexPages);
                     if (pages[indexDossier].Count == 0) { 
                         dossiers.RemoveAt(indexDossier);
                         pages.RemoveAt(indexDossier);
+                        lines.RemoveAt(indexDossier);
                     }
+
+                    
+                    
 
                     indexDossier = dossiers.IndexOf(t);
                     indexPages = pages[indexDossier].Count;
@@ -426,6 +459,7 @@ namespace WpfApplication1
                         indexPages--;
                     }*/
                     pages[indexDossier].Add(feuille.Text);
+                    lines[indexDossier].Add(temp);
                     afficher_Page_Selectionne();
                 }
                 else
@@ -433,12 +467,16 @@ namespace WpfApplication1
                     dossiers.Add(t);
                     pages.Add(new List<String>());
                     pages[dossiers.Count - 1].Add(feuille.Text);
+                    lines.Add(new List<List<Line>>());
+                    lines[dossiers.Count - 1].Add(lines[indexDossier][indexPages]);
 
                     pages[indexDossier].RemoveAt(indexPages);
+                    lines[indexDossier].RemoveAt(indexPages);
                     if (pages[indexDossier].Count == 0)
                     {
                         dossiers.RemoveAt(indexDossier);
                         pages.RemoveAt(indexDossier);
+                        lines.RemoveAt(indexDossier);
                     }
 
                     indexDossier = dossiers.Count - 1;
@@ -448,5 +486,46 @@ namespace WpfApplication1
             }
 
         }
+
+        private void Canvas_MouseDown_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+                currentPoint = e.GetPosition((Canvas)sender);
+        }
+
+        private void Canvas_MouseMove_1(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Line line = new Line();
+
+                line.Stroke = SystemColors.WindowFrameBrush;
+                line.X1 = currentPoint.X;
+                line.Y1 = currentPoint.Y;
+                line.X2 = e.GetPosition((Canvas)sender).X;
+                line.Y2 = e.GetPosition((Canvas)sender).Y;
+
+                currentPoint = e.GetPosition((Canvas)sender);
+
+
+                lines[indexDossier][indexPages].Add(line);
+
+                paintSurface.Children.Add(line);
+            }
+        }
+
+
+        public void update_Canvas()
+        {
+            paintSurface.Children.Clear();
+            List<Line> lines_l = lines[indexDossier][indexPages];
+            foreach (Line line in lines_l)
+            {
+                paintSurface.Children.Add(line);
+            }
+        }
     }
+
+    
 }

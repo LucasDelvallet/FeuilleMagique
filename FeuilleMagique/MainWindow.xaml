@@ -9,7 +9,7 @@
                 <ImageBrush ImageSource="images/bureau.jpg"/>
             </Grid.Background>
         </Grid>
-        <Grid Height="700" Width="550" Margin="-700,0,0,0" Cursor="Pen">
+        <Grid Name="grid" Height="700" Width="550" Margin="-700,0,0,0" Cursor="Pen">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="193*"/>
                 <ColumnDefinition Width="357*"/>
@@ -19,8 +19,14 @@
             </Grid.Background>
             <local:MyGifImage x:Name="gifImageDroite" Stretch="Fill" GifSource="/images/AnimDroite.gif" AutoStart="False" Grid.ColumnSpan="2" />
             <local:MyGifImage x:Name="gifImageGauche" Stretch="Fill" GifSource="/images/AnimGauche.gif" AutoStart="False" Grid.ColumnSpan="2" />
-            <TextBox x:Name="feuille" HorizontalAlignment="Left" Height="588" TextWrapping="Wrap" VerticalAlignment="Top" Width="424" FontFamily="Freestyle Script" FontSize="17" AcceptsReturn="True" Margin="105,58,0,0" Background="{x:Null}" BorderBrush="{x:Null}" SpellCheck.IsEnabled="True" RenderTransformOrigin="0.5,0.5" Cursor="Pen" Grid.ColumnSpan="2">
-            </TextBox>
+
+            <Canvas Name="paintSurface"  MouseDown="Canvas_MouseDown_1" MouseMove="Canvas_MouseMove_1" Grid.ColumnSpan="2" Margin="105,352,10,54" >
+                <Canvas.Background>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Canvas.Background>
+            </Canvas>
+            <TextBox x:Name="feuille"  HorizontalAlignment="Left" Height="294" TextWrapping="Wrap" VerticalAlignment="Top" Width="424" FontFamily="Freestyle Script" FontSize="17" AcceptsReturn="True" Margin="105,58,0,0" Background="{x:Null}" BorderBrush="{x:Null}" SpellCheck.IsEnabled="True"  Cursor="Pen" Grid.ColumnSpan="2"/>
+
             <Image x:Name="pagesuivante" HorizontalAlignment="Left" Height="50" Margin="307.2,651,0,-1" VerticalAlignment="Top" Width="50" MouseLeftButtonDown="pagesuivante_MouseLeftButtonDown" Source="images/pagecorneeDroite.png" RenderTransformOrigin="-1.296,-0.196" Grid.Column="1"/>
             <Image x:Name="pageprecedente" HorizontalAlignment="Left" Height="50" Margin="-1,648,0,0" VerticalAlignment="Top" Width="50" MouseLeftButtonDown="pageprecedente_MouseLeftButtonDown" Source="images/pagecorneeDroite.png" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
@@ -34,9 +40,9 @@
             </Image>
 
 
-            <TextBox x:Name="titre" HorizontalAlignment="Left" Height="49" Margin="112,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="422" Background="{x:Null}" FontFamily="Freestyle Script" FontSize="30" BorderBrush="{x:Null}" Grid.ColumnSpan="2" TextChanged="titre_TextChanged"/>
-            <TextBlock x:Name="numpage" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontFamily="Freestyle Script" FontSize="25" Margin="10,8,0,0"/>
-            <Grid x:Name="dossierGrid" Background="LightGray" HorizontalAlignment="Left" Height="587" Margin="105,59,0,0" VerticalAlignment="Top" Width="435" MouseDown="dossierGrid_MouseDown" Cursor="Pen" Grid.ColumnSpan="2">
+            <TextBox  x:Name="titre" HorizontalAlignment="Left" Height="49" Margin="112,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="422" Background="{x:Null}" FontFamily="Freestyle Script" FontSize="30" BorderBrush="{x:Null}" Grid.ColumnSpan="2" TextChanged="titre_TextChanged"/>
+            <TextBlock  x:Name="numpage" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontFamily="Freestyle Script" FontSize="25" Margin="10,8,0,0"/>
+            <Grid  x:Name="dossierGrid" Background="LightGray" HorizontalAlignment="Left" Height="587" Margin="105,59,0,0" VerticalAlignment="Top" Width="435" MouseDown="dossierGrid_MouseDown" Cursor="Pen" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80*" />
                     <RowDefinition Height="80*" />
@@ -50,7 +56,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
             </Grid>
-            <ScrollViewer x:Name="ScrollPagesNaviguer" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible" Margin="118,626,63,2" Visibility="Visible" Grid.ColumnSpan="2">
+            <ScrollViewer  x:Name="ScrollPagesNaviguer" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible" Margin="118,626,63,2" Visibility="Visible" Grid.ColumnSpan="2">
                 <StackPanel x:Name="pagesNaviguer" HorizontalAlignment="Left" Background="#FFDEDEDE" Height="68" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" CanHorizontallyScroll="True" Orientation="Horizontal"  Visibility="Hidden" MouseDown="pagesNaviguer_MouseDown"/>
             </ScrollViewer>
         </Grid>

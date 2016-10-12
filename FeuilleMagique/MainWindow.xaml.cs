@@ -75,6 +75,8 @@ namespace WpfApplication1
             dossiers.Add("COO"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
             dossiers.Add("BL"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
             dossiers.Add("CAR"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("TestFolder"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
+            dossiers.Add("TestFolderError"); pages.Add(new List<String>()); lines.Add(new List<List<Line>>());
 
             pages[0].Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Fusce sit amet venenatis augue.  \n Sed commodo sem eu nibh laoreet faucibus. In congue diam ligula, nec pellentesque ante mollis at.");
             pages[0].Add("Morbi placerat nibh eros, eget fermentum nulla cursus non. Cras sit amet justo eleifend nibh feugiat dapibus eget quis metus.");
@@ -115,6 +117,42 @@ namespace WpfApplication1
             pages[6].Add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. ");
             pages[6].Add("");
 
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("Test");
+            pages[7].Add("");
 
             //creer la liste des lines pour le canvas
             int i = 0;

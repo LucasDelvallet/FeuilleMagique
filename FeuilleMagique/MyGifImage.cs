@@ -126,5 +126,13 @@ namespace FeuilleMagique
         {
             BeginAnimation(FrameIndexProperty, null);
         }
+
+        /// <summary>
+        /// Pause the animation
+        /// </summary>
+        public void PauseAnimation()
+        {
+            BeginAnimation(FrameIndexProperty, _animation);
+        }
     }
 }

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FeuilleMagique"
         mc:Ignorable="d"
-        Title="Super Stylo 3000" Height="457.007" Width="390.703">
-    <Grid Margin="0,0,0,-1.2">
-        <Button x:Name="buttonDossier" Content="Afficher dossier" HorizontalAlignment="Left" Margin="120,21,0,0" VerticalAlignment="Top" Width="110" Click="buttonDossier_Click"/>
-        <Button x:Name="buttonPageSuivante" Content="Page suivante" HorizontalAlignment="Left" Margin="225,61,0,0" VerticalAlignment="Top" Width="110" Click="buttonPageSuivante_Click" />
-        <Button x:Name="buttonPagePrecedente" Content="Page precedente" HorizontalAlignment="Left" Margin="4,61,0,0" VerticalAlignment="Top" Width="110" Click="buttonPagePrecedente_Click" />
+        Title="Super Stylo 3000" Height="457.007" Width="365.703">
+    <Grid Margin="0,0,-8,-1">
+        <Button x:Name="buttonDossier" Content="Afficher dossier" HorizontalAlignment="Left" Margin="108,25,0,0" VerticalAlignment="Top" Width="110" Click="buttonDossier_Click"/>
+        <Button x:Name="buttonPageSuivante" Content="Page suivante" HorizontalAlignment="Left" Margin="220,69,0,0" VerticalAlignment="Top" Width="110" Click="buttonPageSuivante_Click" />
+        <Button x:Name="buttonPagePrecedente" Content="Page precedente" HorizontalAlignment="Left" Margin="5,69,0,0" VerticalAlignment="Top" Width="110" Click="buttonPagePrecedente_Click" />
         <Image x:Name="image" HorizontalAlignment="Left" Height="357" VerticalAlignment="Top" Width="122" Source="images/SuperStylo3000.JPG" Margin="120,45,0,0"/>
         <Button x:Name="NouvellePage" Content="Nouvelle Page" HorizontalAlignment="Left" Margin="196,118,0,0" VerticalAlignment="Top" Width="110" Click="NouvellePage_Click" />
         <Button x:Name="button" Content="Mode correction/visualisation" HorizontalAlignment="Left" Margin="187,300,0,0" VerticalAlignment="Top" Width="170"/>
